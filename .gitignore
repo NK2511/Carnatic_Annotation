@@ -1,0 +1,32 @@
+# Research Artifacts (Manuscript)
+main.tex
+sections/
+paper_graphs/
+README_SIMPLE.md
+things_to_fix.txt
+
+# Audio Data (Heavy files)
+Raagas/**/*.wav
+Raagas/**/*.mp3
+Raagas/**/*.flac
+Raagas/**/*.m4a
+
+# CREPE Data (Too heavy for GitHub)
+**/crepe_*.csv
+
+# Python Environment & Cache
+demucs_env/
+venv/
+.env
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE & Notebooks
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.DS_Store
+
+# Keeping Carva files (usually smaller)
+# !**/carva_*.csv
