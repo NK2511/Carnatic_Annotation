@@ -3,6 +3,7 @@ import sys
 import shutil
 import subprocess
 import argparse
+import platform
 import pandas as pd
 import numpy as np
 import librosa
@@ -24,9 +25,14 @@ except Exception:
 
 print(f"🖥️  Audio Processing Device: {DEVICE.upper()}")
 
-# Path to the Python environment that has Demucs installed                   
-DEMUCS_PYTHON = r"C:\Desktop\Python\CarnaticAnnotater\demucs_env\Scripts\python.exe"
-# Ensure the Scripts folder (where ffmpeg might be) is in PATH for child process
+# Path to the Python environment that has Demucs installed
+# Resolved relative to this script's location (workspace root = parent of VocalAnnotator/)
+WORKSPACE_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if platform.system() == "Windows":
+    DEMUCS_PYTHON = os.path.join(WORKSPACE_ROOT, "demucs_env", "Scripts", "python.exe")
+else:
+    DEMUCS_PYTHON = os.path.join(WORKSPACE_ROOT, "demucs_env", "bin", "python")
+# Ensure the env's bin/Scripts folder (where ffmpeg might be) is in PATH for child process
 os.environ["PATH"] = os.path.dirname(DEMUCS_PYTHON) + os.pathsep + os.environ["PATH"]
 
 # CREPE Configuration

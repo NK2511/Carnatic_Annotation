@@ -15,17 +15,24 @@ if current_dir not in sys.path:
 from carnatic_functions import get_raaga_context, clean_np_float_list
 
 # Configuration
-BASE_DIR = r"C:\Desktop\Python\CarnaticAnnotater\Kharaharapriya"
-AUDIO_DIR = os.path.join(BASE_DIR, "Kharaharapriya_CSVs")
-DATA_DIR = os.path.join(BASE_DIR, "Kharaharapriya_Data")
-OUTPUT_CSV = os.path.join(DATA_DIR, "crepe_Kharaharapriya.csv")
+# Workspace root is 2 levels up from this script (VocalAnnotator/ -> root)
+WORKSPACE_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RAAGAS_ROOT = os.path.join(WORKSPACE_ROOT, "Raagas")
+
+# Default raaga - change this to the raaga you want to consolidate
+DEFAULT_RAAGA = "Kharaharapriya"
+
+BASE_DIR = os.path.join(RAAGAS_ROOT, DEFAULT_RAAGA)
+AUDIO_DIR = os.path.join(BASE_DIR, f"{DEFAULT_RAAGA}_CSVs")
+DATA_DIR = os.path.join(BASE_DIR, f"{DEFAULT_RAAGA}_Data")
+OUTPUT_CSV = os.path.join(DATA_DIR, f"crepe_{DEFAULT_RAAGA}.csv")
 
 if not os.path.exists(DATA_DIR):
     os.makedirs(DATA_DIR)
 
 def consolidate_crepe_files(audio_dir):
-    # Ignoring context auto-guess for specific path control
-    raaga_name = "Mayamalavagowlai"
+    # Derive raaga name from the folder name of audio_dir (e.g. "Kharaharapriya_CSVs" -> "Kharaharapriya")
+    raaga_name = os.path.basename(audio_dir).replace("_CSVs", "")
     output_csv = OUTPUT_CSV
     
     print(f"📂 Audio Dir: {audio_dir}")

@@ -10,6 +10,8 @@ Raagas/**/*.wav
 Raagas/**/*.mp3
 Raagas/**/*.flac
 Raagas/**/*.m4a
+Raagas/Songs&Vocals.zip
+
 
 # CREPE Data (Too heavy for GitHub)
 **/crepe_*.csv
